@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{61E88E20-6527-4983-8E5A-2942535AD943}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ApiEuAtendoDEMO.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="EvoApi.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ApiEuAtendoDEMO">
+        <MSBuild Projects="ApiEuAtendoDEMO.dproj"/>
+    </Target>
+    <Target Name="ApiEuAtendoDEMO:Clean">
+        <MSBuild Projects="ApiEuAtendoDEMO.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ApiEuAtendoDEMO:Make">
+        <MSBuild Projects="ApiEuAtendoDEMO.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="EvoApi">
+        <MSBuild Projects="EvoApi.dproj"/>
+    </Target>
+    <Target Name="EvoApi:Clean">
+        <MSBuild Projects="EvoApi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="EvoApi:Make">
+        <MSBuild Projects="EvoApi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ApiEuAtendoDEMO;EvoApi"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ApiEuAtendoDEMO:Clean;EvoApi:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ApiEuAtendoDEMO:Make;EvoApi:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
